@@ -1,7 +1,7 @@
 ﻿namespace Tin.Command;
 
 [Command(Name = "help")]
-internal class ExampleCommand : ICommand
+internal class ExampleCommand : CommandBase
 {
     public override void Exec(string[] strParams)
     {

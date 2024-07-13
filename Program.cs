@@ -8,7 +8,7 @@ public class Program
     {
         var assembly = Assembly.GetEntryAssembly()
             .GetTypes()
-            .Where(type => type.IsSubclassOf(typeof(ICommand))).ToList();
+            .Where(type => type.IsSubclassOf(typeof(CommandBase))).ToList();
 
         foreach (var type in assembly)
         {
@@ -22,7 +22,7 @@ public class Program
                 {
                     if (cmdName == attr.Name)
                     {
-                        ICommand? command = Activator.CreateInstance(type) as ICommand;
+                        CommandBase? command = Activator.CreateInstance(type) as CommandBase;
 
                         if (command != null)
                         {
@@ -35,7 +35,7 @@ public class Program
     }
 }
 
-public abstract class ICommand
+public abstract class CommandBase
 {
     public virtual void Exec(string[] strParams)
     {
