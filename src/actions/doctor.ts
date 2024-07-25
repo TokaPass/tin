@@ -17,7 +17,14 @@ export default async function doctor(options: any) {
 
   console.log(message);
 
+  let json = Object.freeze({
+    os: nda.version(),
+    bunVer: bunVersion,
+    pSql: pgSqlAvailable,
+    gitVer: gitVersion,
+  });
+
   if (options.log) {
-    Bun.write(__dirname + "/log.txt", message);
+    Bun.write(__dirname + "/log.txt", JSON.stringify(json, null, 2));
   }
 }
